@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BookShelf</title>
+</head>
+<h1> Bookshelf </h1>
+<body>
+    <ul id="bookshelf">
+    {% for book in books %}
+        <li> {{ book['title'] }} ({{ book['year'] }}), {{ book['author'] }}
+            <form method="POST">
+                <input type="hidden" name="bookId" value="{{ book['_id'] }}"/>
+                <input type="submit" name="submitButton" value="Delete"/>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+    <form method="POST">
+        <br>
+        <input placeholder="Title" type="text" name="title"/>
+        <input placeholder="Author" type="text" name="author"/>
+        <input placeholder="Year Published" type="text" name="year"/>
+        <input type="submit" name="submitButton" value="Add Book"/>
+    </form>
+</body>
+</html>
