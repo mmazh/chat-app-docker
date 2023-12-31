@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 app.secret_key = b'supersecretkey'
-client = MongoClient('localhost', 27017)
+client = MongoClient('172.17.0.2', 27017) # ip address of mongoDB docker container
 db = client.BookShelf
 shelf = db.bookShelf
 
@@ -26,3 +26,6 @@ def index():
             shelf.delete_one({"_id": ObjectId(bookId)})
     currentShelf = shelf.find()
     return render_template('bookShelf.html', books=currentShelf)
+
+if __name__ == "__main__":
+    app.run(debug=True)
