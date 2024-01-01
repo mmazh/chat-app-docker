@@ -1,0 +1,22 @@
+version: "2.15.1"
+services:
+  flask:
+    build: ./backend
+    container_name: flask_api_c
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+  mongodb:
+    image: mongo:latest
+    hostname: mongo_container
+    ports:
+      - '27017:27017'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

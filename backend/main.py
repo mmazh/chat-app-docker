@@ -6,7 +6,7 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 app.secret_key = b'supersecretkey'
-client = MongoClient('172.17.0.2', 27017) # ip address of mongoDB docker container
+client = MongoClient(host="mongo_container", port=27017)
 db = client.BookShelf
 shelf = db.bookShelf
 
